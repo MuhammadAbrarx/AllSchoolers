@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
@@ -34,7 +38,11 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.google.firebase:firebase-core:11.6.2'
     compile 'com.google.firebase:firebase-database:11.6.2'
+
+    //Social Integration
+    compile 'com.facebook.android:facebook-android-sdk:4.7.0'
 }
+
 
 
 
