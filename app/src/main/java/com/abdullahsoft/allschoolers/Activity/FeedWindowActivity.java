@@ -1,8 +1,11 @@
-package abdullahsoft.com.thenewspaperapp.Activity;
+package com.abdullahsoft.allschoolers.Activity;
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,8 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
-import abdullahsoft.com.thenewspaperapp.R;
+import com.abdullahsoft.allschoolers.R;
 
 
 public class FeedWindowActivity extends AppCompatActivity
@@ -22,6 +26,13 @@ public class FeedWindowActivity extends AppCompatActivity
 
     //this is the total type of contents for eg: only image,image+text,only text ,text+text etc
     long numberOfCards;
+
+    //Layouts
+    ConstraintLayout layoutConstraint_mainContainer;
+    //Views
+
+    LayoutInflater layoutInflater;
+    ViewGroup parent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,47 @@ public class FeedWindowActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ////INITIALIZING ALL STUFF////
+
+        //Initializing Layouts
+        layoutConstraint_mainContainer = findViewById(R.id.layoutConstraint_mainContainer);
+        parent = layoutConstraint_mainContainer;
+        //Initializing Views
+
+
+        //Initializing Buttons
+
+
+        //MODIFIED//
+        //Generating some views or layouts
+
+        layoutInflater = this.getLayoutInflater();
+        GenerateLayoutsOrViews();
+    }
+
+    private void GenerateLayoutsOrViews() {
+
+        //while creating views there are two options, one is to inflate a view or create one
+
+        ///All formats necessary to inflate different cardviews
+        CardView card = new CardView(this);
+//        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+//        constraintLayout.
+//        card.addView(constraintLayout);
+
+
+//        CardView cardView = layoutInflater.inflate(R.layout.card_text, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_image, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageLeft_textRight, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageLeft_title_textRight, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageRight_textLeft, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageRight_title_textLeft, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageTop_textBottom, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageTop_title_textBottom, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageBottom_textTop, parent, false);
+//        CardView cardView = layoutInflater.inflate(R.layout.card_imageBottom_title_textTop, parent, false);
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package abdullahsoft.com.thenewspaperapp.Activity;
+package com.abdullahsoft.allschoolers.Activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import abdullahsoft.com.thenewspaperapp.R;
+import com.abdullahsoft.allschoolers.R;
+
 
 public class WebViewActivity extends AppCompatActivity {
 

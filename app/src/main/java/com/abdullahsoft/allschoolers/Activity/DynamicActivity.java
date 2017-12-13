@@ -1,9 +1,10 @@
-package abdullahsoft.com.thenewspaperapp.Activity;
+package com.abdullahsoft.allschoolers.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import abdullahsoft.com.thenewspaperapp.R;
+import com.abdullahsoft.allschoolers.R;
+
 
 public class DynamicActivity extends AppCompatActivity {
 
