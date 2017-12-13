@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Height has to 30db or drawable size won't match, untested with other drawable with different size-->
+<!--This spinner material "com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner" & background "spinner_background" file has to be used together for the background to work-->
+<!--The original creator of the spinner_background.xml is Md. Abrar-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:top="4dp"
+        android:bottom="4dp"
+        android:right="2dp"
+        android:left="2dp"
+        android:drawable="@drawable/idie_edittext_border_righttoleft" />
+    <item
+        android:top="4dp"
+        android:bottom="4dp"
+        android:right="2dp"
+        android:left="2dp"
+        >
+        <shape
+
+            android:id="@+id/background_shape">
+            <stroke
+                android:width="3dp"
+                android:color="@android:color/transparent" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+            <corners android:radius="2dp" />
+            <!--<solid android:color="@android:color/transparent" />-->
+            <solid android:color="#fff" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "370140440607",
+    "firebase_url": "https://all-schoolers.firebaseio.com",
+    "project_id": "all-schoolers",
+    "storage_bucket": "all-schoolers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370140440607:android:855ac3344f017763",
+        "android_client_info": {
+          "package_name": "com.abdullahsoft.allschoolers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370140440607-7opsfeuo6k0l3r51mntl75l4le7d18lp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7SJl2ENFWlqzkYXPH0IFSwuhCs4cBGQA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
