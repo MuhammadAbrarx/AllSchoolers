@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <!--the scrollview is holding all content means its the main container of all views-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollview_signin_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="?android:attr/textSelectHandleLeft"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/scrollview_signin_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/idie_form_border"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+        <!--creating a number of connections using the layout below, could be
+        a horizontal or vertical collection of views-->
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layoutConstraint_mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.abdullahsoft.thenewspaperapp.Activity.FeedWindowActivity"
+            tools:showIn="@layout/app_bar_drawer"
+            >
+
+            <!--THIS IS THE PARENT LAYOUT INSIDE WHICH DYNAMIC CONTENTS INFLATE-->
+            <!--the content holder view, could contain multiple different kind
+            of contents or same or similar kind of contents or content holders-->
+            <!--the contents or views here may most of the time be dynamically
+            generated, so the commented view is a sample view-->
+
+            <!--this card view can be generated completely dynamically with code or inflating a pre-defined xml-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_textinput_emailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_textinput_passwordLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_password"
+                    android:imeActionId="6"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/checkBox_rememberme"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="CheckBox"/>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/button_sign_in"-->
+                <!--style="?android:textAppearanceSmall"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="@string/action_signin"-->
+                <!--android:background="@drawable/buttonstyle_roundedcorners"-->
+                <!--android:textStyle="bold"/>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/button_forgot_password"-->
+                <!--style="?android:textAppearanceSmall"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="@string/action_forgot_password"-->
+                <!--android:textStyle="bold"/>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/button_signup"-->
+                <!--style="?android:textAppearanceSmall"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="@string/action_signup"-->
+                <!--android:textStyle="bold"/>-->
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
