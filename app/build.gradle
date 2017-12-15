@@ -1,7 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 26
+    // if i dont need the mechanism flavorDimensions "default"
+    flavorDimensions "versionCode"
+
+    signingConfigs {
+        freeConfig {
+        }
+    }
+
     defaultConfig {
         applicationId "com.abdullahsoft.allschoolers"
         minSdkVersion 21
@@ -14,12 +23,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.freeConfig
         }
     }
-
     repositories {
         mavenCentral()
         jcenter()
+    }
+    productFlavors {
+        paid {
+        }
+        free {
+            signingConfig signingConfigs.freeConfig
+        }
     }
 }
 
@@ -38,14 +54,12 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.google.firebase:firebase-core:11.6.2'
     compile 'com.google.firebase:firebase-database:11.6.2'
-
+    compile 'com.google.firebase:firebase-auth:11.6.2'
     ///ocial Integration///
-
     // Required only if Facebook login support is required
     compile 'com.facebook.android:facebook-android-sdk:4.7.0'
-
     // Required only if Twitter login support is required
-    compile("com.twitter.sdk.android:twitter-core:3.0.0@aar") { transitive = true }
+    compile('com.twitter.sdk.android:twitter-core:3.0.0@aar') { transitive = true }
 }
 
 

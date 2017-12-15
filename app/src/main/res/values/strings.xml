@@ -140,6 +140,11 @@
     <string name="title_detail_detail">Detail Detail</string>
 
     <!--IDs-->
-    <string name="facebook_app_id">164123910860233</string>
-    <string name="fb_login_protocol_scheme">fb164123910860233</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_app_id" translatable="false">164123910860233</string>
+    <string name="facebook_app_secret" translatable="false">e9002ae926fd685b8aca2fbade7bdc5a</string>
+    <!-- Twitter consumer key and secret -->
+    <!--<string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>-->
+    <!--<string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>-->
 </resources>
