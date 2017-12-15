@@ -25,7 +25,8 @@
     <ScrollView
         android:id="@+id/scrollView_form_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:id="@+id/layout_linear_form_login"
@@ -48,7 +49,7 @@
                     android:id="@+id/autoCompleteTextView_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
+                    android:hint="@string/prompt_email_or_phone"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"/>
@@ -98,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_forgot_password"
+                android:text="Forgot Pass"
                 android:textStyle="bold"/>
 
             <Button

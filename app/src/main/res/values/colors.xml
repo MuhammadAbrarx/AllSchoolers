@@ -11,7 +11,15 @@
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
 
+    <!--Color Controls-->
+    <color name="form_heading_glossy_bright">#99FFFF</color>
+    <color name="edittext_color_hint">#7c99ffff</color>
+    <color name="black_alpha_40">#66000000</color>
+    <color name="transparent_white">#00ffffff</color>
+    <color name="borderColor_textInput">#66000000</color>
+
     <!--Material Color Pallete-->
+    <!--EXAMPLE COLORS-->
 
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
@@ -290,10 +298,6 @@
     <color name="white">#FFFFFF</color>
 
 
-    <!--iDie Specific Colors-->
-    <color name="form_heading_glossy_bright">#99FFFF</color>
-    <color name="edittext_color_hint">#7c99ffff</color>
-    <color name="black_alpha_40">#66000000</color>
-    <color name="transparent_white">#00ffffff</color>
+
 
 </resources>

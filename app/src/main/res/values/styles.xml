@@ -17,4 +17,27 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="style_textinput_rounded">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/background_edittext_rounded</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="style_button_rounded">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@drawable/background_button_rounded</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+    </style>
+
+    <!--<style name="FacebookLoginButton">-->
+        <!--<item name="android:textSize">small</item>-->
+        <!--<item name="android:background">@drawable/facebook_signin_btn</item>-->
+        <!--<item name="android:layout_marginTop">10dp</item>-->
+        <!--<item name="android:layout_marginBottom">10dp</item>-->
+        <!--<item name="android:layout_gravity">center_horizontal</item>-->
+    <!--</style>-->
+
 </resources>
