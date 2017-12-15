@@ -181,13 +181,42 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginBottom="32dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/fb"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView_tweeter"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/twitter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empty_bottom_space"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView_otherSignin"
+                app:layout_constraintVertical_bias="0.0"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView_gmail"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/fb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView_tweeter"/>
+
+                <!--app:civ_border_color="#FF000000"-->
+                <!--app:civ_border_width="2dp"-->
 
 
 
@@ -226,8 +255,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="8dp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView_otherSignin"/>
+                />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
