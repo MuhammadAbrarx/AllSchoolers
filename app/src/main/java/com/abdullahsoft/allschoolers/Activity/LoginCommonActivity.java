@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -19,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +36,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.abdullahsoft.allschoolers.R;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +81,16 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
    @Override
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_login_common);
+       // setContentView(R.layout.activity_login_common);
+       //Facebook sdk has to be initialized before setContentView as Documentation states
+       FacebookSdk.sdkInitialize(this);
+       setContentView(R.layout.test_login);
+
+       ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.layout_root_login);
+       AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+       animationDrawable.setEnterFadeDuration(2000);
+       animationDrawable.setExitFadeDuration(4000);
+       animationDrawable.start();
 
        // Initializations...
        // Set up the login form.
@@ -119,6 +133,34 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
        // downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
        // l1.setAnimation(uptodown);
        // l2.setAnimation(downtoup);
+
+       //initialization
+       // Initialize Facebook Login button
+       // mCallbackManager = CallbackManager.Factory.create();
+       // LoginButton loginButton = findViewById(R.id.button_facebook_login);
+       // loginButton.setReadPermissions("email", "public_profile");
+       // loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+       //     @Override
+       //     public void onSuccess(LoginResult loginResult) {
+       //         // Log.d(TAG, "facebook:onSuccess:" + loginResult);
+       //         handleFacebookAccessToken(loginResult.getAccessToken());
+       //     }
+       //
+       //     @Override
+       //     public void onCancel() {
+       //         // Log.d(TAG, "facebook:onCancel");
+       //         // ...
+       //     }
+       //
+       //     @Override
+       //     public void onError(FacebookException error) {
+       //         // Log.d(TAG, "facebook:onError", error);
+       //         // ...
+       //     }
+       // });
+
+
+
 
    }
 

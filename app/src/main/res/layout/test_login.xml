@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/layout_root_login"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/android_gradient_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -82,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColorHint="@color/edittext_color_hint"
                     android:hint="@string/prompt_email_or_phone"
                     android:text="@string/prompt_email_or_phone"
                     android:inputType="textEmailAddress"
@@ -126,9 +129,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="CheckBox"
-                android:textColor="@color/black"
                 android:buttonTint="@color/black"
+                android:text="Remember Me"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_passwordLogin"/>
 
@@ -156,6 +159,7 @@
                 android:background="@drawable/buttonstyle_roundedcorners"
                 android:text="@string/action_signin"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_rememberme"/>
@@ -214,7 +218,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/twitter"
+                android:src="@drawable/twitter_circle_shaded_512"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +232,7 @@
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/fb"
+                android:src="@drawable/google_plus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView_tweeter"/>
