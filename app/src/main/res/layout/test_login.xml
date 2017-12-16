@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    android:id="@+id/layout_root_login"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/android_gradient_list"
+    android:id="@+id/layout_root_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/android_gradient_list"
     >
     <!--the scrollview is holding all content means its the main container of all views-->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/scrollview_signin_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?android:attr/textSelectHandleLeft" android:contentDescription="TODO"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:srcCompat="@drawable/logo_primary"/>
+    <!--app:srcCompat="?android:attr/textSelectHandleLeft" -->
 
     <!-- Login progress -->
     <ProgressBar
@@ -37,11 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-        >
+                app:layout_constraintTop_toBottomOf="@id/imageView">
         <!--android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -84,13 +88,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColorHint="@color/edittext_color_hint"
                     android:hint="@string/prompt_email_or_phone"
-                    android:text="@string/prompt_email_or_phone"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/prompt_email_or_phone"
                     android:textColor="@color/black"
-                    android:singleLine="true"/>
+                    android:textColorHint="@color/edittext_color_hint"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -110,14 +114,14 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="@string/prompt_password"
-                    android:text="@string/prompt_password"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:text="@string/prompt_password"
+                    android:textColor="@color/black"/>
 
 
             </android.support.design.widget.TextInputLayout>
@@ -139,11 +143,11 @@
                 android:id="@+id/textView_forgotpass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Forgot Password ?"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_passwordLogin"/>
@@ -158,8 +162,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/buttonstyle_roundedcorners"
                 android:text="@string/action_signin"
-                android:textStyle="bold"
                 android:textColor="@color/white"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_rememberme"/>
@@ -171,43 +175,72 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="OR SIGN IN USING THE FOLLOWING"
+                android:text="OR SIGN IN USING THE BUTTONS BELOW"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_sign_in"/>
 
             <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/circle_img"/>-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/circle_img"/>-->
 
             <!--the purpose of thie framelayout is to override the provided facebook login button
              the solution is to call the onClick method of fb login button whenever the ImageView is clicked-->
-            <FrameLayout
+            <!--<FrameLayout-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_marginBottom="32dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--&gt;-->
+
+            <!--<com.facebook.login.widget.LoginButton-->
+            <!--android:id="@+id/button_faceboook_login"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:visibility="gone"-->
+            <!--/>-->
+
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:id="@+id/imageView_fb"-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:elevation="3dp"-->
+            <!--android:src="@drawable/facebook_circle_fcorner_512"-->
+
+            <!--/>-->
+            <!--</FrameLayout>-->
+
+            <!--the purpose of thie framelayout is to override the provided facebook login button
+             the solution is to call the onClick method of fb login button whenever the ImageView is clicked-->
+
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/button_faceboook_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView_fb"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                >
-                <com.facebook.login.widget.LoginButton
-                    android:id="@+id/button_faceboook_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-                    />
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView_fb"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/fb"
+                android:elevation="3dp"
+                android:src="@drawable/facebook_circle_fcorner_512"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"
+                app:layout_constraintStart_toStartOf="parent"
 
-                    />
-            </FrameLayout>
+                />
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -218,6 +251,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:elevation="2dp"
                 android:src="@drawable/twitter_circle_shaded_512"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -232,56 +266,26 @@
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:elevation="2dp"
                 android:src="@drawable/google_plus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView_tweeter"/>
 
-                <!--app:civ_border_color="#FF000000"-->
-                <!--app:civ_border_width="2dp"-->
+            <!--app:civ_border_color="#FF000000"-->
+            <!--app:civ_border_width="2dp"-->
 
 
-
-            <!--<Button
-                android:id="@+id/button_fb"
-                style="@style/style_button_rounded"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/action_fb"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_sign_in"/>
-
-            <Button
-                android:id="@+id/button_signup"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/action_signup"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_fb"/>-->
-
-
-            <TextView
-                android:id="@+id/empty_bottom_space"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:visibility="invisible"
-                />
+            <!--<TextView-->
+            <!--android:id="@+id/empty_bottom_space"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:visibility="invisible"-->
+            <!--/>-->
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
-
 
 
 </android.support.constraint.ConstraintLayout>
