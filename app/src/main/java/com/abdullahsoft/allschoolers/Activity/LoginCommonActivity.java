@@ -3,6 +3,7 @@ package com.abdullahsoft.allschoolers.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
@@ -32,12 +33,25 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.abdullahsoft.allschoolers.R;
-import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +69,14 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
     */
    private static final int REQUEST_READ_CONTACTS = 0;
 
-   /**
-    * A dummy authentication store containing known user names and passwords.
-    * TODO: remove after connecting to a real authentication system.
-    */
+    private static final String TAG = "LoginCommonActivity";
+    private static final int RC_SIGN_IN = 9001;
+
+    // [START declare_auth]
+    private FirebaseAuth mAuth;
+    // [END declare_auth]
+
+    private GoogleSignInClient mGoogleSignInClient;
    /*private static final String[] DUMMY_CREDENTIALS = new String[]{
            "foo@example.com:hello", "bar@example.com:world"
    };*/
@@ -68,15 +86,20 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
    private UserLoginTask mAuthTask = null;
 
    // UI references.
-   private AutoCompleteTextView mEmailView;
-   private EditText mPasswordView;
-   private View mProgressView;
-   private View mLoginFormView;
+   AutoCompleteTextView mEmailView;
+   EditText mPasswordView;
+   View mProgressView;
+   View scrollView_form_signin;
 
-   //for anim
-   // LinearLayout l1,l2;
+   //for animation
    //  Button btnsub;
-   //  Animation uptodown,downtoup;
+    Animation uptodown,downtoup;
+
+    ////Views////
+    ///Image Views///
+    ImageView imageView_logo;
+
+
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -86,21 +109,38 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
        FacebookSdk.sdkInitialize(this);
        setContentView(R.layout.test_login);
 
+       // Views
+       mEmailView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView_email);
+       mPasswordView = (EditText) findViewById(R.id.edittext_password);
+       mProgressView = findViewById(R.id.progressbar_login);
+       scrollView_form_signin = findViewById(R.id.scrollview_signin_form);
+       imageView_logo = findViewById(R.id.imageView_logo);
+
+       //Buttons
+       Button mEmailSignInButton = (Button) findViewById(R.id.button_sign_in);
+       // btnsub = (Button)findViewById(R.id.buttonsub);
+
+       ////Animations////
+       //Animating the background
        ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.layout_root_login);
        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
        animationDrawable.setEnterFadeDuration(2000);
        animationDrawable.setExitFadeDuration(4000);
        animationDrawable.start();
 
-       // Initializations...
-       // Set up the login form.
+       uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
+       downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
+       imageView_logo.setAnimation(uptodown);
+       scrollView_form_signin.setAnimation(downtoup);
 
-       // Views
-       mEmailView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView_email);
-       mPasswordView = (EditText) findViewById(R.id.edittext_password);
-       mProgressView = findViewById(R.id.progressbar_login);
-       mLoginFormView = findViewById(R.id.scrollView_form_login);
-       Button mEmailSignInButton = (Button) findViewById(R.id.button_sign_in);
+       // [START config_signin]
+       // Configure Google Sign In
+       GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+               .requestIdToken(getString(R.string.default_web_client_id))
+               .requestEmail()
+               .build();
+       // [END config_signin]
+
 
 
        populateAutoComplete();
@@ -124,15 +164,6 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
            }
        });
 
-
-       //Animation
-       // btnsub = (Button)findViewById(R.id.buttonsub);
-       // l1 = (LinearLayout) findViewById(R.id.l1);
-       // l2 = (LinearLayout) findViewById(R.id.l2);
-       // uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
-       // downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
-       // l1.setAnimation(uptodown);
-       // l2.setAnimation(downtoup);
 
        //initialization
        // Initialize Facebook Login button
@@ -163,6 +194,16 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
 
 
    }
+
+    // [START on_start_check_user]
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        // FirebaseUser currentUser = mAuth.getCurrentUser();
+        // updateUI(currentUser);
+    }
+    // [END on_start_check_user]
 
    private void populateAutoComplete() {
        if (!mayRequestContacts()) {
@@ -281,12 +322,12 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-           mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-           mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+           scrollView_form_signin.setVisibility(show ? View.GONE : View.VISIBLE);
+           scrollView_form_signin.animate().setDuration(shortAnimTime).alpha(
                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                @Override
                public void onAnimationEnd(Animator animation) {
-                   mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                   scrollView_form_signin.setVisibility(show ? View.GONE : View.VISIBLE);
                }
            });
 
@@ -302,7 +343,7 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
            // The ViewPropertyAnimator APIs are not available, so simply show
            // and hide the relevant UI components.
            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-           mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+           scrollView_form_signin.setVisibility(show ? View.GONE : View.VISIBLE);
        }
    }
 
@@ -359,6 +400,123 @@ public class LoginCommonActivity extends AppCompatActivity implements LoaderCall
        int ADDRESS = 0;
        int IS_PRIMARY = 1;
    }
+
+    // [START onactivityresult]
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e);
+                // [START_EXCLUDE]
+                updateUI(null);
+                // [END_EXCLUDE]
+            }
+        }
+    }
+    // [END onactivityresult]
+
+    // [START auth_with_google]
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        // [START_EXCLUDE silent]
+        //showing progress dialogue here
+        // showProgressDialog();
+        // [END_EXCLUDE]
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginCommonActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+
+                        // [START_EXCLUDE]
+                        //hiding progress dialogue or progressbar
+                        // hideProgressDialog();
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+    // [END auth_with_google]
+
+    // [START signin]
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    // [END signin]
+
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
+
+    private void revokeAccess() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google revoke access
+        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
+
+    private void updateUI(FirebaseUser user) {
+        // hideProgressDialog();
+        // if (user != null) {
+        //     mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
+        //     mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+        //
+        //     findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        //     findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+        // } else {
+        //     mStatusTextView.setText(R.string.signed_out);
+        //     mDetailTextView.setText(null);
+        //
+        //     findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+        //     findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+        // }
+    }
+
+
+
+
+
+
+                        /////*** Inner Classes are mentioned down below***/////
 
    /**
     * Represents an asynchronous login/registration task used to authenticate

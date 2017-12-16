@@ -4,13 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_root_login"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/android_gradient_list"
     >
     <!--the scrollview is holding all content means its the main container of all views-->
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginEnd="8dp"
@@ -22,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/logo_primary"/>
+        app:srcCompat="@drawable/ic_all_inclusive_white_48dp"/>
     <!--app:srcCompat="?android:attr/textSelectHandleLeft" -->
 
     <!-- Login progress -->
@@ -78,6 +79,8 @@
                 style="@style/style_textinput_rounded"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -92,9 +95,10 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@string/prompt_email_or_phone"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/edittext_color_hint"/>
+                    android:textColorHint="@color/edittext_color_hint"
+                    />
+                    <!--android:text="@string/prompt_email_or_phone"-->
 
             </android.support.design.widget.TextInputLayout>
 
@@ -104,6 +108,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_emailLogin">
@@ -116,12 +122,14 @@
                     android:hint="@string/prompt_password"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@string/prompt_password"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/edittext_color_hint"
+                    />
+                    <!--android:text="@string/prompt_password"-->
 
 
             </android.support.design.widget.TextInputLayout>
@@ -133,9 +141,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:buttonTint="@color/black"
+                android:buttonTint="@color/white"
                 android:text="Remember Me"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_passwordLogin"/>
 
@@ -147,7 +155,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Forgot Password ?"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_passwordLogin"/>
@@ -176,7 +184,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="OR SIGN IN USING THE BUTTONS BELOW"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_sign_in"/>
@@ -237,10 +245,9 @@
                 android:elevation="3dp"
                 android:src="@drawable/facebook_circle_fcorner_512"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"
-                app:layout_constraintStart_toStartOf="parent"
 
-                />
+                app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"
+                app:layout_constraintStart_toStartOf="parent"/>
 
 
             <de.hdodenhof.circleimageview.CircleImageView
