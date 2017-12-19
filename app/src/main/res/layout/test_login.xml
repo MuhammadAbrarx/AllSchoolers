@@ -14,15 +14,13 @@
         android:id="@+id/imageView_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/scrollview_signin_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
         app:srcCompat="@drawable/ic_all_inclusive_white_48dp"/>
     <!--app:srcCompat="?android:attr/textSelectHandleLeft" -->
 
@@ -42,11 +40,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.74">
         <!--android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -79,8 +79,8 @@
                 style="@style/style_textinput_rounded"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:paddingStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -98,7 +98,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/edittext_color_hint"
                     />
-                    <!--android:text="@string/prompt_email_or_phone"-->
+                <!--android:text="@string/prompt_email_or_phone"-->
 
             </android.support.design.widget.TextInputLayout>
 
@@ -108,8 +108,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:paddingStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_emailLogin">
@@ -129,7 +129,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/edittext_color_hint"
                     />
-                    <!--android:text="@string/prompt_password"-->
+                <!--android:text="@string/prompt_password"-->
 
 
             </android.support.design.widget.TextInputLayout>
@@ -144,6 +144,7 @@
                 android:buttonTint="@color/white"
                 android:text="Remember Me"
                 android:textColor="@color/white"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_passwordLogin"/>
 
@@ -156,6 +157,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Forgot Password ?"
                 android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_textinput_passwordLogin"/>
@@ -169,8 +172,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/buttonstyle_roundedcorners"
+                android:elevation="2dp"
                 android:text="@string/action_signin"
                 android:textColor="@color/white"
+                android:textSize="19sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,9 +187,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:text="OR SIGN IN USING THE BUTTONS BELOW"
                 android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_sign_in"/>
@@ -193,36 +200,6 @@
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:background="@drawable/circle_img"/>-->
-
-            <!--the purpose of thie framelayout is to override the provided facebook login button
-             the solution is to call the onClick method of fb login button whenever the ImageView is clicked-->
-            <!--<FrameLayout-->
-            <!--android:layout_width="45dp"-->
-            <!--android:layout_height="45dp"-->
-            <!--android:layout_marginBottom="32dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--&gt;-->
-
-            <!--<com.facebook.login.widget.LoginButton-->
-            <!--android:id="@+id/button_faceboook_login"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:visibility="gone"-->
-            <!--/>-->
-
-            <!--<de.hdodenhof.circleimageview.CircleImageView-->
-            <!--android:id="@+id/imageView_fb"-->
-            <!--android:layout_width="45dp"-->
-            <!--android:layout_height="45dp"-->
-            <!--android:elevation="3dp"-->
-            <!--android:src="@drawable/facebook_circle_fcorner_512"-->
-
-            <!--/>-->
-            <!--</FrameLayout>-->
 
             <!--the purpose of thie framelayout is to override the provided facebook login button
              the solution is to call the onClick method of fb login button whenever the ImageView is clicked-->
@@ -242,12 +219,14 @@
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:elevation="3dp"
                 android:src="@drawable/facebook_circle_fcorner_512"
-                app:layout_constraintBottom_toBottomOf="parent"
 
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView_tweeter"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_otherSignin"/>
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -257,7 +236,7 @@
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:elevation="2dp"
                 android:src="@drawable/twitter_circle_shaded_512"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -273,11 +252,13 @@
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:elevation="2dp"
                 android:src="@drawable/google_plus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView_tweeter"/>
+                app:layout_constraintStart_toEndOf="@+id/imageView_tweeter"
+                app:layout_constraintTop_toBottomOf="@+id/textView_otherSignin"/>
 
             <!--app:civ_border_color="#FF000000"-->
             <!--app:civ_border_width="2dp"-->
