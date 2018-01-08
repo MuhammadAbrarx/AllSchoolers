@@ -2,9 +2,11 @@ package com.abdullahsoft.allschoolers.Activity;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,13 +18,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.abdullahsoft.allschoolers.R;
 
 
 public class FeedWindowActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener
-{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     //this is the total type of contents for eg: only image,image+text,only text ,text+text etc
     long numberOfCards;
@@ -30,6 +33,8 @@ public class FeedWindowActivity extends AppCompatActivity
     //Layouts
     ConstraintLayout layoutConstraint_mainContainer;
     //Views
+    /***Scroll Views***/
+    ScrollView scrollview_contentDrawer;
 
     LayoutInflater layoutInflater;
     ViewGroup parent;
@@ -62,10 +67,11 @@ public class FeedWindowActivity extends AppCompatActivity
         ////INITIALIZING ALL STUFF////
 
         //Initializing Layouts
-        layoutConstraint_mainContainer = findViewById(R.id.layoutConstraint_mainContainer);
-        parent = layoutConstraint_mainContainer;
+        layoutConstraint_mainContainer = (ConstraintLayout) findViewById(R.id.layoutConstraint_mainContainer_dynamicScrollableCardsHolder);
+        parent = (ConstraintLayout) layoutConstraint_mainContainer;
         //Initializing Views
-
+        /***Scroll Views***/
+        scrollview_contentDrawer = (ScrollView) findViewById(R.id.scrollview_root_dynamicScrollableCardsHolder);
 
         //Initializing Buttons
 
@@ -73,7 +79,7 @@ public class FeedWindowActivity extends AppCompatActivity
         //MODIFIED//
         //Generating some views or layouts
 
-        layoutInflater = this.getLayoutInflater();
+        // layoutInflater = this.getLayoutInflater();
         GenerateLayoutsOrViews();
     }
 
@@ -82,13 +88,80 @@ public class FeedWindowActivity extends AppCompatActivity
         //while creating views there are two options, one is to inflate a view or create one
 
         ///All formats necessary to inflate different cardviews
-        CardView card = new CardView(this);
+        //test start edit/remove when done
+        int numberOfFields = 5;
+        int numberOfTextFields = 3;
+        //test end start edit/remove when done
+
+
+        /**Starting Generating the card/cards**/
+        // CardView card = new CardView(this);
+        // card.setLayoutParams(parent.getLayoutParams());
+
+
+        ConstraintSet constraintSet = new ConstraintSet();
+        TextView texts[] = new TextView[numberOfFields];
+        for (int i = 0; i < numberOfTextFields; i++) {
+            TextView textV = new TextView(this);
+            // textV.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            textV.setText("Hello I am a dynamic text  " + i);
+            // textV.setTextSize(25);
+            textV.setId(1000 + i);
+            // textV.setLayoutParams(params);
+            layoutConstraint_mainContainer.addView(textV);
+            constraintSet.clone(layoutConstraint_mainContainer);
+            if (i==0)
+            {
+                /***Should Only Run the first time when i=0***/
+                constraintSet.connect(textV.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 20);
+                constraintSet.connect(textV.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 20);
+                constraintSet.connect(textV.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 20);
+                constraintSet.connect(textV.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 20);
+            }
+            else
+            {
+
+                // ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                //         ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                // textV.setLayoutParams(params);
+
+                // constraintSet.constrainDefaultHeight(textV.getId(), 200);
+
+                //constraintSet.connect (
+                //                      viewTop/Bottom/Start/End Constraint id ,
+                //                      constraintSet.op/Bottom/Start/End,
+                //                      ctoViewOf Top/Bottom/Start/End Constraint id,
+                //                      ConstraintSet.op/Bottom/Start/End, margin
+                //                      );
+
+                constraintSet.connect(textV.getId(), ConstraintSet.TOP, texts[i - 1].getId(), ConstraintSet.BOTTOM, 8);
+                constraintSet.connect(textV.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 8);
+                constraintSet.connect(textV.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 8);
+
+                //baseline
+                // constraintSet.connect(textV.getId(),ConstraintSet.BASELINE,textView1.id,ConstraintSet.BASELINE,0)
+
+                //trying out animations
+                // constraintSet.load(this,R.layout.dynamic_scrollable_cards_holder);
+                // TransitionManager.beginDelayedTransition(layoutConstraint_mainContainer);
+            }
+            constraintSet.constrainWidth(textV.getId(), ConstraintSet.WRAP_CONTENT);
+            constraintSet.applyTo((ConstraintLayout) layoutConstraint_mainContainer);
+            // card.addView(textV);
+            texts[i] = textV;
+        }
+
+        /**Ending Generating the card/cards**/
+        /*Adding card to View*/
+        //an attempt to fill the parent with card
+        // parent.addView(card);
+        // card.ad
 //        ConstraintLayout constraintLayout = new ConstraintLayout(this);
 //        constraintLayout.
 //        card.addView(constraintLayout);
 
 
-//        CardView cardView = layoutInflater.inflate(R.layout.card_text, parent, false);
+        // CardView cardView = (CardView) layoutInflater.inflate(R.layout.card_text_holder, parent, false);
 //        CardView cardView = layoutInflater.inflate(R.layout.card_image, parent, false);
 //        CardView cardView = layoutInflater.inflate(R.layout.card_imageLeft_textRight, parent, false);
 //        CardView cardView = layoutInflater.inflate(R.layout.card_imageLeft_title_textRight, parent, false);

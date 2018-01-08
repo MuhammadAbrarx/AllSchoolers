@@ -8,6 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/android_gradient_list"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     >
     <!--the scrollview is holding all content means its the main container of all views-->
     <ImageView
@@ -65,7 +67,7 @@
         <!--creating a number of connections using the layout below, could be
         a horizontal or vertical collection of views-->
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/layoutConstraint_mainContainer"
+            android:id="@+id/layoutConstraint_mainContainer_contentDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

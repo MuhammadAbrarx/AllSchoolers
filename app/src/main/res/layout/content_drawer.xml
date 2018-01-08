@@ -1,44 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--the scrollview is holding all content means its the main container of all views-->
+    <include layout="@layout/dynamic_scrollable_cards_holder"
 
-<!--the scrollview is holding all content means its the main container of all views-->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollview_signin_form"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@drawable/idie_form_border"
-    android:clipToPadding="false"
-    android:fillViewport="true"
-    android:orientation="vertical"
-    android:visibility="visible"
-    >
-    <!--creating a number of connections using the layout below, could be
-    a horizontal or vertical collection of views-->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/layoutConstraint_mainContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.abdullahsoft.thenewspaperapp.Activity.FeedWindowActivity"
-        tools:showIn="@layout/app_bar_drawer"
-        >
-
-        <!--THIS IS THE PARENT LAYOUT INSIDE WHICH DYNAMIC CONTENTS INFLATE-->
-        <!--the content holder view, could contain multiple different kind
-        of contents or same or similar kind of contents or content holders-->
-        <!--the contents or views here may most of the time be dynamically
-        generated, so the commented view is a sample view-->
-
-        <!--this card view can be generated completely dynamically with code or inflating a pre-defined xml-->
-        <!--<android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v7.widget.CardView>-->
-
-
-    </android.support.constraint.ConstraintLayout>
-
-</ScrollView>
+        />
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+</merge>
